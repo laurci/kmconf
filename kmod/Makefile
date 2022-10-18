@@ -10,9 +10,10 @@ clean:
 
 install:
 	insmod ./config-device.ko
+	chmod 0666 /dev/jscfgipc
 
 uninstall:
-	rmmod config_device
+	rmmod -f config_device
 
 logs:
 	journalctl --since "1 hour ago" | grep "config-device"

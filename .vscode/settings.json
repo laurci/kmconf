@@ -1,0 +1,8 @@
+{
+    "C_Cpp.default.includePath": [
+        "/lib/modules/5.15.0-1018-gcp/build/include/"
+    ],
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+}

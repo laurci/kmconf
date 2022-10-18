@@ -6,6 +6,8 @@ MODULE_AUTHOR("Laurentiu Ciobanu");
 MODULE_DESCRIPTION("Device for project configuration files");
 
 #pragma region IPC Implementation
+static bool is_waiting = false;
+
 static int ipc_open(struct inode *i, struct file *f)
 {
     LOG_INFO("IPC: open()\n");
@@ -16,6 +18,37 @@ static int ipc_close(struct inode *i, struct file *f)
 {
     LOG_INFO("IPC: close()\n");
     return 0;
+}
+
+static ssize_t ipc_read(struct file *f, char __user *buf, size_t len, loff_t *off)
+{
+    LOG_INFO("IPC: read()\n");
+
+    if (*off == 0)
+    {
+        is_waiting = true;
+        while(is_waiting) yield();
+
+        char *hello = "Hello from kernel\0";
+        int hello_len = 18;
+
+        copy_to_user(buf, hello, hello_len);
+        (*off) ++;
+        return hello_len;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+static ssize_t ipc_write(struct file *f, const char __user *buf, size_t len, loff_t *off)
+{
+    LOG_INFO("IPC: write()\n");
+
+    is_waiting = false;
+
+    return len;
 }
 
 #pragma endregion
@@ -35,7 +68,9 @@ static dev_t ipc_first_device;
 static struct file_operations ipc_fops = {
     .owner = THIS_MODULE,
     .open = ipc_open,
-    .release = ipc_close
+    .release = ipc_close,
+    .read = ipc_read,
+    .write = ipc_write
 };
 
 static int init_ipc_device(void) {

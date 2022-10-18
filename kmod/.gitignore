@@ -1,0 +1,10 @@
+* 
+
+!.gitignore
+
+
+!Makefile
+!config-device.c
+
+!config.h
+!init.h

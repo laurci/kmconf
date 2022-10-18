@@ -1,10 +1,2 @@
-* 
-
-!.gitignore
-
-
-!Makefile
-!config-device.c
-
-!config.h
-!init.h
+node_modules/
+dist/
