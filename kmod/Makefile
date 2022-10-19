@@ -10,7 +10,10 @@ clean:
 
 install:
 	insmod ./config-device.ko
-	chmod 0666 /dev/jscfgipc
+	chmod 0666 /dev/jscfgi*
+
+disable:
+	echo X > /dev/jscfgipc
 
 uninstall:
 	rmmod -f config_device

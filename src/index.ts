@@ -1,9 +1,11 @@
-import { initIpc } from "./lib/ipc";
+import ipc from "./lib/ipc";
 
 async function main() {
+    ipc.init();
 
-    initIpc();
-
+    ipc.onReadAddress((address) => {
+        return `reading address ${address} bla bla bla bla bla bla\nlalalaalala`;
+    });
 }
 
 main();
