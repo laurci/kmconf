@@ -1,5 +1,5 @@
 {
-    "name": "kconf",
+    "name": "kmconf",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
