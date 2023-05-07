@@ -1,0 +1,10 @@
+size: small
+description: |
+  JS/TS projects have to many configs. It's very hard to manage and maintain so many files. Most of the time there is a lot of replicated content inside these configurations.****
+
+  This project is composed of 3 components: a kernel module, a user-space daemon, and a CLI.
+
+  The kernel module mounts char-devices at `/dev/jscfgi{0-n}` and intercepts all reads on these devices. When someone tries to read from one of these devices, it forwards the request to the daemon that runs in user space. The kernel module and the daemon communicate via a simple file-based IPC pipe. Using the CLI, the user can create and manage projects that contain a single configuration file. The CLI allows the user to create fake configuration files by symlinking them to `/dev/jscfgi{0-n}` devices. The daemon holds a map between files on disk and which devices they are linked to. When it receives a read from the kernel module, it parses the project config file and uses a renderer dedicated to the type of file requested to return the text.
+tags:
+  - Linux
+  - kernel module
