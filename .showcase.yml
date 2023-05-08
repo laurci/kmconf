@@ -1,6 +1,12 @@
 size: small
 description: |
-  JS/TS projects have complex configurations, making management challenging. This project has three components: a kernel module, a user-space daemon, and a CLI. The kernel module intercepts reads on char-devices, forwarding requests to the daemon. The CLI enables users to create and manage projects with a single config file, creating fake config files via symlinking. The daemon maps files to devices and uses a dedicated renderer to return text upon receiving a read request.
+  JS/TS projects have complex configurations, making management challenging. This project has three components: a kernel module, a user-space daemon, and a CLI. 
+  
+  The kernel module intercepts reads on char-devices, forwarding requests to the daemon. 
+  
+  The CLI enables users to create and manage projects with a single config file, creating fake config files via symlinking. 
+  
+  The daemon maps files to devices and uses a dedicated renderer to return text upon receiving a read request.
 tags:
   - Linux
   - kernel module
